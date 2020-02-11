@@ -60,7 +60,7 @@ struct T
     int value = 0;
     const char* name = nullptr;
     
-    T(int valueIn, const char* nameIn) : value(valueIn), name(nameIn) {};
+    T(int valueIn, const char* nameIn) : value(valueIn), name(nameIn) {}
 };
 
 struct U
@@ -107,10 +107,12 @@ struct Struct2
 struct Comparer                                //4
 {
     T* compare(T* a, T* b) //5
-    {
-        FIXME what do we always do before using pointers? 
-        if( a->value < b->value ) return a;
-        if( a->value > b->value ) return b;
+    {   
+        if(a != nullptr && b != nullptr)
+        {
+            if( a->value < b->value ) return a;
+            if( a->value > b->value ) return b;
+        }
         return nullptr;
     }
 };
@@ -133,10 +135,3 @@ int main()
     U u2;
     std::cout << "[member func] u2's multiplied values: " << u2.multiply( &updatedValue ) << std::endl;
 }
-        
-        
-        
-        
-        
-        
-        
