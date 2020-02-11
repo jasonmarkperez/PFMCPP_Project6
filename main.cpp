@@ -68,15 +68,18 @@ struct U
     float foo { 0 }, bar { 0 };
     float multiply(float* updatedValue)
     {
-        std::cout << "U's foo value: " << this->foo << std::endl;
-        this->foo = *updatedValue;
-        std::cout << "U's foo updated value: " << this->foo << std::endl;
-        while( std::abs(this->bar - this->foo) > 0.001f )
-        {   
-            this->bar += 0.001f;
+        if(updatedValue != nullptr){
+            std::cout << "U's foo value: " << this->foo << std::endl;
+            this->foo = *updatedValue;
+            std::cout << "U's foo updated value: " << this->foo << std::endl;
+            while( std::abs(this->bar - this->foo) > 0.001f )
+            {   
+                this->bar += 0.001f;
+            }
+            std::cout << "U's bar updated value: " << this->bar << std::endl;
+            return this->bar * this->foo;
         }
-        std::cout << "U's bar updated value: " << this->bar << std::endl;
-        return this->bar * this->foo;
+        return 0;
     }
 };
 
@@ -84,15 +87,18 @@ struct Struct2
 {
     static float staticFunctionA(U* that, float* updatedValue)
     {
-        std::cout << "U's foo value: " << that->foo << std::endl;
-        that->foo = *updatedValue;
-        std::cout << "U's foo updated value: " << that->foo << std::endl;
-        while( std::abs(that->bar - that->foo) > 0.001f )
-        {
-            that->bar += 0.001f;
+        if(that != nullptr && updatedValue != nullptr){
+            std::cout << "U's foo value: " << that->foo << std::endl;
+            that->foo = *updatedValue;
+            std::cout << "U's foo updated value: " << that->foo << std::endl;
+            while( std::abs(that->bar - that->foo) > 0.001f )
+            {
+                that->bar += 0.001f;
+            }
+            std::cout << "U's bar updated value: " << that->bar << std::endl;
+            return that->bar * that->foo;
         }
-        std::cout << "U's bar updated value: " << that->bar << std::endl;
-        return that->bar * that->foo;
+        return 0;
     }
 };
 
