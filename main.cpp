@@ -68,7 +68,8 @@ struct U
     float foo { 0 }, bar { 0 };
     float multiply(float* updatedValue)
     {
-        if(updatedValue != nullptr){
+        if(updatedValue != nullptr)
+        {
             std::cout << "U's foo value: " << this->foo << std::endl;
             this->foo = *updatedValue;
             std::cout << "U's foo updated value: " << this->foo << std::endl;
@@ -87,7 +88,8 @@ struct Struct2
 {
     static float staticFunctionA(U* that, float* updatedValue)
     {
-        if(that != nullptr && updatedValue != nullptr){
+        if(that != nullptr && updatedValue != nullptr)
+        {
             std::cout << "U's foo value: " << that->foo << std::endl;
             that->foo = *updatedValue;
             std::cout << "U's foo updated value: " << that->foo << std::endl;
@@ -106,6 +108,7 @@ struct Comparer                                //4
 {
     T* compare(T* a, T* b) //5
     {
+        FIXME what do we always do before using pointers? 
         if( a->value < b->value ) return a;
         if( a->value > b->value ) return b;
         return nullptr;
