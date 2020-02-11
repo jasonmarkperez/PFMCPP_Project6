@@ -66,21 +66,33 @@ struct T
 struct U
 {
     float foo { 0 }, bar { 0 };
-//    <#returnType#> <#memberFunction#>(<#type name#>* <#updatedValue#>)      //12
-//    {
-//
-//    }
+    float multiply(float* updatedValue)
+    {
+        std::cout << "U's foo value: " << this->foo << std::endl;
+        this->foo = *updatedValue;
+        std::cout << "U's foo updated value: " << this->foo << std::endl;
+        while( std::abs(this->bar - this->foo) > 0.001f )
+        {   
+            this->bar += 0.001f;
+        }
+        std::cout << "U's bar updated value: " << this->bar << std::endl;
+        return this->bar * this->foo;
+    }
 };
 
 struct Struct2
 {
-    static float staticFunctionA(U* that, float* updatedValue)        //10
+    static float staticFunctionA(U* that, float* updatedValue)
     {
-        
         std::cout << "U's foo value: " << that->foo << std::endl;
         that->foo = *updatedValue;
         std::cout << "U's foo updated value: " << that->foo << std::endl;
-        return 2.2f;
+        while( std::abs(that->bar - that->foo) > 0.001f )
+        {
+            that->bar += 0.001f;
+        }
+        std::cout << "U's bar updated value: " << that->bar << std::endl;
+        return that->bar * that->foo;
     }
 };
 
@@ -104,11 +116,13 @@ int main()
     auto* smaller = f.compare(&name1, &name2);
     std::cout << "the smaller one is << " << smaller->name << std::endl;
     
-    U zoo;
-    Struct2 ku;
+    U u;
     float updatedValue = 5.f;
-    std::cout << " [static func] zoo's multiple values: " << ku.staticFunctionA(&zoo, &updatedValue)
+    std::cout << " [static func] u's multiple values: " << Struct2::staticFunctionA(&u, &updatedValue)
     << std::endl;
+
+    U u2;
+    std::cout << "[member func] u2's multiplied values: " << u2.multiply( &updatedValue ) << std::endl;
 }
         
         
