@@ -63,6 +63,19 @@ struct T
     T(int valueIn, const char* nameIn) : value(valueIn), name(nameIn) {}
 };
 
+struct Comparer
+{
+    T* compare(T* a, T* b)
+    {   
+        if(a != nullptr && b != nullptr)
+        {
+            if( a->value < b->value ) return a;
+            if( a->value > b->value ) return b;
+        }
+        return nullptr;
+    }
+};
+
 struct U
 {
     float foo { 0 }, bar { 0 };
@@ -84,7 +97,7 @@ struct U
     }
 };
 
-struct Struct2
+struct staticStruct
 {
     static float staticFunctionA(U* that, float* updatedValue)
     {
@@ -104,18 +117,7 @@ struct Struct2
     }
 };
 
-struct Comparer                                //4
-{
-    T* compare(T* a, T* b) //5
-    {   
-        if(a != nullptr && b != nullptr)
-        {
-            if( a->value < b->value ) return a;
-            if( a->value > b->value ) return b;
-        }
-        return nullptr;
-    }
-};
+
 
 
 int main()
@@ -129,7 +131,7 @@ int main()
     
     U u;
     float updatedValue = 5.f;
-    std::cout << " [static func] u's multiple values: " << Struct2::staticFunctionA(&u, &updatedValue)
+    std::cout << " [static func] u's multiple values: " << staticStruct::staticFunctionA(&u, &updatedValue)
     << std::endl;
 
     U u2;
