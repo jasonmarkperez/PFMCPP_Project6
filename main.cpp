@@ -33,7 +33,7 @@ struct T
 
 struct Comparer
 {
-    T compare(T &a, T &b)
+    T compare(T &a, T &b) FIXME you changed the return type.  that's not what instruction 1) says to do.
     {
         if( a.value < b.value ) return a;
         if( a.value > b.value ) return b;
@@ -79,7 +79,7 @@ int main()
     T name1(40, "foo");
     T name2(60, "zbar");
     Comparer f;
-    T smaller = f.compare(name1, name2);
+    T smaller = f.compare(name1, name2); FIXME this func should still return a pointer.
     std::cout << "the smaller one is << " << smaller.name << std::endl;
     
     U u;
