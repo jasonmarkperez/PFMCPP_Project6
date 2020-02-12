@@ -80,8 +80,17 @@ int main()
     T name1(40, "foo");
     T name2(60, "zbar");
     Comparer f;
-    T* smaller = f.compare(name1, name2);
-    std::cout << "the smaller one is << " << (smaller != nullptr ? smaller->name : 0) << std::endl;
+    auto* smaller = f.compare(name1, name2);
+    if(smaller != nullptr)
+    {
+        std::cout << "the smaller one is << " << smaller->name << std::endl;
+    }
+    else
+    {
+        std::cout << name1.name << " and "<< name2.name << " are equal (or pointer is null)" << std::endl;
+    }
+
+
     
     U u;
     float updatedValue = 5.f;
