@@ -125,7 +125,6 @@ int main()
     T name1(40, "foo");
     T name2(60, "zbar");
     Comparer f;
-    f.compare(&name1, &name2);
     auto* smaller = f.compare(&name1, &name2);
     std::cout << "the smaller one is << " << smaller->name << std::endl;
     
