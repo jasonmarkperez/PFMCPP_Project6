@@ -81,7 +81,7 @@ int main()
     T name2(60, "zbar");
     Comparer f;
     T* smaller = f.compare(name1, name2);
-    std::cout << "the smaller one is << " << smaller->name << std::endl;
+    std::cout << "the smaller one is << " << (smaller != nullptr ? smaller->name : 0) << std::endl;
     
     U u;
     float updatedValue = 5.f;
