@@ -90,8 +90,6 @@ int main()
         std::cout << name1.name << " and "<< name2.name << " are equal (or pointer is null)" << std::endl;
     }
 
-
-    
     U u;
     float updatedValue = 5.f;
     std::cout << " [static func] u's multiple values: " << staticStruct::staticFunctionA(u, updatedValue)
